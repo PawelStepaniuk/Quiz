@@ -1,8 +1,8 @@
 package com.pawel.quiz.model;
 
-import com.pawel.quiz.dao.QuestionDao;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Question {
@@ -12,8 +12,8 @@ public class Question {
     private String name;
     private String content;
     private String answer;
-//    @OneToOne
-//    private Answer answer;
+  //  @OneToMany(mappedBy = "question")
+  //  List<Answer> answers = new ArrayList<>();
 
 
     public String getAnswer() {
