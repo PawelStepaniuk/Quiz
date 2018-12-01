@@ -1,7 +1,7 @@
-package com.pawel.quiz.dao;
-
-import com.pawel.quiz.model.Question;
-import org.springframework.data.repository.CrudRepository;
-
-public interface AnswerDao extends CrudRepository<Question,Long> {
-}
+//package com.pawel.quiz.dao;
+//
+//import com.pawel.quiz.model.Answer;
+//import org.springframework.data.repository.CrudRepository;
+//
+//public interface AnswerDao extends CrudRepository<Answer,Long> {
+//}

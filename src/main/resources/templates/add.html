@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -31,12 +31,16 @@
                     <label>Treść</label>
                     <textarea name="name" class="form-control" rows="1" placeholder="Nazwa"></textarea>
                     <textarea name="content" class="form-control" rows="5" placeholder="Treść Pytania"></textarea>
+                    <textarea name="answer_true" class="form-control" rows="2" placeholder="Poprawna Odpowiedź"></textarea>
+                    <textarea name="answer_false1" class="form-control" rows="2" placeholder="Zła odpowiedź"></textarea>
+                    <textarea name="answer_false2" class="form-control" rows="2" placeholder="Zła odpowiedź"></textarea>
+                    <textarea name="answer_false3" class="form-control" rows="2" placeholder="Zła odpowiedź"></textarea>
+                    <button type="submit" class="btn btn-lg btn-primary btn-animated">Dodaj</button>
 
-                        <input type="radio" name="answer" value="true" required> Prawda
-                        <input type="radio" name="answer" value="false" required> Fałsz
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-animated">Dodaj</button>
             </form>
+
+
         </div>
     </div>
 </div>

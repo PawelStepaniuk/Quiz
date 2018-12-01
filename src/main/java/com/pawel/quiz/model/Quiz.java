@@ -1,18 +1,20 @@
 package com.pawel.quiz.model;
 
+import com.pawel.quiz.dao.QuestionDao;
+import com.pawel.quiz.dao.QuizDao;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Quiz {
+public class Quiz implements QuizDao {
 
 
 
-    public List<Question> generateQuizQuestionList(List<Question> questionsBase) {
-        List<Question> questionsList = new ArrayList<>();
-        for (int i = 0; i < questionsBase.size(); i++) {
-            questionsList.add(questionsBase.get(i));
-        }
-
-        return questionsList;
+    public List<Question> generateQuizQuestionList(QuestionDao questionDao) {
+        Iterator<Question> questionIterator = questionDao.findAll().iterator();
+        List<Question> questionList = new ArrayList<>();
+        questionIterator.forEachRemaining(questionList::add);
+        return questionList;
     }
 }

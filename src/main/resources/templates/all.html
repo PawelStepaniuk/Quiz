@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Pytania</title>
@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/style.css">
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Task List</title>
+    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/style.css}"  href="../css/style.css" />
 </head>
 <body>
 <div class="container">
@@ -23,9 +24,12 @@
                 <div clas="media-body">
                     <h4 class="media-heading" th:text="${question.name}"></h4>
                     <p th:text="${question.content}"></p>
+                    <p th:text="${question.answer_true}"></p>
+                    <p th:text="${question.answer_false1}"></p>
+                    <p th:text="${question.answer_false2}"></p>
+                    <p th:text="${question.answer_false3}"></p>
                 </div>
             </div>
-            <a>Comment</a>
         </div>
     </div>
 </div></body>

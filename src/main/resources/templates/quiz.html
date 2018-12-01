@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
     <meta charset="UTF-8">
     <title>Generator</title>
-    <link rel="stylesheet" href="../static/style.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Task List</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../css/style.css"/>
 </head>
 <body>
 
 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<div class="container">
+    <div class="row">
+
+
+            <tr th:each="question : ${questions}">
+                <div class="col-sm-12"><h1 th:text="${question.content}"></h1></div>
+                <button type="submit" value="${question.answer_true}" class="col-xs-6"><h3
+                        th:text="${question.answer_true}"></h3></button>
+                <button type="submit" value="${question.answer_false1}" class="col-xs-6"><h3
+                        th:text="${question.answer_false1}"></h3></button>
+                <button type="submit" value="${question.answer_false2}" class="col-xs-6"><h3
+                        th:text="${question.answer_false2}">Nie dziala</h3></button>
+                <button type="submit" value="${question.answer_false3}" class="col-xs-6"><h3
+                        th:text="${question.answer_false3}">Nie dziala</h3></button>
+
+        </tr>
+    </div>
+</div>
 
 
 </body>
-
 </html>
