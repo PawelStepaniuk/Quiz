@@ -19,7 +19,6 @@
 <div class="container">
     <div class="row">
 
-
             <tr th:each="question : ${questions}">
                 <div class="col-sm-12"><h1 th:text="${question.content}"></h1></div>
                 <button type="submit" value="${question.answer_true}" class="col-xs-6"><h3
