@@ -19,4 +19,12 @@ public class Quiz implements QuizDao {
         Collections.shuffle(questionList);
         return questionList;
     }
+//    public Question findQuestionByID(Long id, QuestionDao questionDao){
+//        Iterator<Question> questionIterator = questionDao.findAll().iterator();
+//        List<Question> questionList = new ArrayList<>();
+//        questionIterator.forEachRemaining(questionList::add);
+//
+//        return questionList.get(id.intValue());
+//
+//    }
 }

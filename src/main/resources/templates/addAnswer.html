@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Dodawanie Pytań</h1>
+            <h1>Dodawanie Odpowiedzi</h1>
         </div>
 
     </div>
@@ -26,14 +26,12 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <form action="/questions" method="get">
+            <form action="/answers/{questionID}" method="get">
                 <div class="form-group">
                     <label>Treść</label>
-                    <textarea name="name" class="form-control" rows="1" placeholder="Nazwa"></textarea>
-                    <textarea name="content" class="form-control" rows="5" placeholder="Treść Pytania"></textarea>
-                        <textarea name="answer.answer" class="form-control" rows="2" placeholder=" odpowiedź"></textarea>
+                     <textarea name="Answer.answer" class="form-control" rows="2" placeholder="Zła odpowiedź"></textarea>
                         <input type="radio" class="form-control" name="correctAnswer" value="True"> Prawda
-                        <input type="radio" class="form-control" name="correctAnswer" value="False"> Fałsz
+                    <input type="radio" class="form-control" name="correctAnswer" value="False"> Fałsz
                     <button type="submit" class="btn btn-lg btn-primary btn-animated">Dodaj</button>
 
                 </div>

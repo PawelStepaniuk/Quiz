@@ -1,14 +1,15 @@
 package com.pawel.quiz.controller;
 
+import com.pawel.quiz.dao.AnswerDao;
 import com.pawel.quiz.dao.QuestionDao;
 import com.pawel.quiz.dao.QuizDao;
+import com.pawel.quiz.model.Answer;
 import com.pawel.quiz.model.Question;
 import com.pawel.quiz.model.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,11 +17,9 @@ import java.util.List;
 public class QuestionController {
     @Autowired
     private QuestionDao questionDao;
-//    @Autowired
-//    private AnswerDao answerDao;
-
+    private Question question = new Question();
+    private Answer answer = new Answer();
     private QuizDao quizDao = new Quiz();
-
 
     @GetMapping("/")
     public String index() {
@@ -33,11 +32,23 @@ public class QuestionController {
     }
 
     @GetMapping("/questions")
-    public String addQuestion(@ModelAttribute Question question) {
-
+    public String addQuestion(@ModelAttribute Question question,@ModelAttribute Answer answer) {
+        System.out.println(answer.getAnswer() + " TO JEST ODPOWIEDZ");
+        question.addAnswer(answer);
         questionDao.save(question);
-
-
+        System.out.println(question.getAnswers().get(0).getAnswer());
+        System.out.println(question.getContent());
+        return "redirect:/questions/all";
+    }
+    @GetMapping("/answers/add")
+    public String addAnswer(){
+        return "addAnswer";
+    }
+    @GetMapping("/answers/{questionID}")
+    public String addAnswerById(@PathVariable Long questionID,@ModelAttribute Answer answer) {
+        Question foundQuestion = question.findQuestionByID(questionID, questionDao);
+        foundQuestion.addAnswer(answer);
+        foundQuestion.getAnswers().get(0);
         return "redirect:/questions/all";
     }
 
