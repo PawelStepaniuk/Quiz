@@ -11,44 +11,49 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class QuestionController {
     @Autowired
     private QuestionDao questionDao;
+    private AnswerDao answerDao;
     private Question question = new Question();
     private Answer answer = new Answer();
     private QuizDao quizDao = new Quiz();
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
 
     @GetMapping("/questions/add")
     public String addQuestion() {
         return "add";
     }
 
-    @GetMapping("/questions")
-    public String addQuestion(@ModelAttribute Question question,@ModelAttribute Answer answer) {
-        System.out.println(answer.getAnswer() + " TO JEST ODPOWIEDZ");
-        question.addAnswer(answer);
+    @PostMapping("/questions")
+    public String addQuestion(@RequestParam String questionContent, @RequestParam String answer1, @RequestParam String answer2,
+                              @RequestParam String answer3, @RequestParam String answer4, @RequestParam(required = false) String correctAnswer1,
+                              @RequestParam(required = false) String correctAnswer2, @RequestParam(required = false) String correctAnswer3, @RequestParam(required = false) String correctAnswer4) {
+
+        Question question = new Question();
+        List<Answer> answerList = new ArrayList<>();
+        answerList.add(new Answer(answer1,correctAnswer1));
+        answerList.add(new Answer(answer2,correctAnswer2));
+        answerList.add(new Answer(answer3,correctAnswer3));
+        answerList.add(new Answer(answer4,correctAnswer4));
+        question.setContent(questionContent);
+        question.setAnswers(answerList);
         questionDao.save(question);
-        System.out.println(question.getAnswers().get(0).getAnswer());
-        System.out.println(question.getContent());
+        answerDao.save(new Answer(answer1,correctAnswer1));
+        answerDao.save(new Answer(answer2,correctAnswer2));
+        answerDao.save(new Answer(answer3,correctAnswer3));
+        answerDao.save(new Answer(answer4,correctAnswer4));
         return "redirect:/questions/all";
     }
-    @GetMapping("/answers/add")
-    public String addAnswer(){
-        return "addAnswer";
-    }
+
     @GetMapping("/answers/{questionID}")
-    public String addAnswerById(@PathVariable Long questionID,@ModelAttribute Answer answer) {
+    public String addAnswerById(@PathVariable Long questionID, @ModelAttribute Answer answer) {
         Question foundQuestion = question.findQuestionByID(questionID, questionDao);
         foundQuestion.addAnswer(answer);
-        foundQuestion.getAnswers().get(0);
         return "redirect:/questions/all";
     }
 
@@ -62,7 +67,10 @@ public class QuestionController {
 
     @GetMapping("/questions/all")
     public String showQuestions(ModelMap modelMap) {
-
+       try{ System.out.println(answerDao.count());}
+       catch (NullPointerException e){
+           System.out.println(e.getMessage() + " answerdao");
+       }
         modelMap.put("questions", questionDao.findAll());
 
         return "all";

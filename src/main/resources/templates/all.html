@@ -13,24 +13,22 @@
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
           crossorigin="anonymous">
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Task List</title>
-    <link rel="stylesheet" type="text/css" media="all"  th:href="@{/css/style.css}"  href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div class="container">
 
+    <tr th:if="${questions.empty}">
+        <td colspan="2" Baza pytań jest pusta></td>
+    </tr>
     <div th:each="question : ${questions}">
-        <div class="well">
-            <div class="media">
-                <div clas="media-body">
-                    <h4 class="media-heading" th:text="${question.name}"></h4>
-                    <p th:text="${question.content}"></p>
-                    <p th:text="${question.answer_true}"></p>
-                    <p th:text="${question.answer_false1}"></p>
-                    <p th:text="${question.answer_false2}"></p>
-                    <p th:text="${question.answer_false3}"></p>
-                </div>
-            </div>
-        </div>
+        <p th:text="${question.content}"></p>
+        <p th:text="${question.getAnswers()}"></p>
     </div>
-</div></body>
+    <!--<div th:each="answer : ${answers}">-->
+        <!--<p th:text="${answer.quizAnswer}"></p>-->
+        <!--<p th:text="${answer.correct()}"></p>-->
+    <!--</div>-->
+</div>
+</body>
 </html>

@@ -1,7 +1,5 @@
 package com.pawel.quiz.model;
 
-import com.pawel.quiz.dao.QuestionDao;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,11 +8,19 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String answer;
-    private String correctAnswer;
+    private String quizAnswer;
+    private String correct;
 
     @OneToOne
     private Question question;
+
+    public Answer(String quizAnswer, String correct) {
+        this.quizAnswer = quizAnswer;
+        this.correct = correct;
+    }
+
+    public Answer() {
+    }
 
     public Long getId() {
         return id;
@@ -24,20 +30,20 @@ public class Answer {
         this.id = id;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getQuizAnswer() {
+        return quizAnswer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setQuizAnswer(String quizAnswer) {
+        this.quizAnswer = quizAnswer;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public String getCorrect() {
+        return correct;
     }
 
-    public void setCorrectAnswer(String  correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setCorrect(String correct) {
+        this.correct = correct;
     }
 
     public Question getQuestion() {
